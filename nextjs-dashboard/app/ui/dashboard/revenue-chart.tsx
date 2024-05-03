@@ -1,14 +1,8 @@
 import { unstable_noStore as noStore } from 'next/cache'
-
-import { sql } from '@vercel/postgres'
 import Image from 'next/image'
-import RefreshButton from '../components/refresh-button'
+import { sql } from '@vercel/postgres'
 
-// import SideNav from '@/app/ui/dashboard/sidenav'
-
-// import RevenueChart from '@/app/ui/dashboard/revenue-chart';
-
-export default async function Table() {
+export default async function RevenueChart() {
     noStore()
     let data
     let startTime = Date.now()
@@ -27,20 +21,9 @@ export default async function Table() {
     }
 
     const { rows: users } = data
-    const duration = Date.now() - startTime
 
     return (
         <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
-            <div className="flex justify-between items-center mb-4">
-                <div className="space-y-1">
-                    <h2 className="text-xl font-semibold">고양이들</h2>
-                    <p className="text-sm text-gray-500">
-                        Fetched {users.length} users in {duration}ms
-                    </p>
-                </div>
-                <RefreshButton />
-            </div>
-
             <div className="divide-y divide-gray-900/5">
                 {users.map((user) => (
                     <div
@@ -64,9 +47,6 @@ export default async function Table() {
                     </div>
                 ))}
             </div>
-            {/* <SideNav /> */}
-
-            {/* <RevenueChart /> */}
         </div>
     )
 }

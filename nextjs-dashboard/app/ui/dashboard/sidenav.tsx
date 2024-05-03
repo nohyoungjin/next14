@@ -1,3 +1,3 @@
 export default function sideNav() {
-    return <p>SideNav</p>;
+    return <p>SideNav</p>
 }
